@@ -1,0 +1,52 @@
+{"dashboard": [
+    {
+      "id": 1,
+      "date": "12 March",
+      "header": "Sales",
+      "subheader": "",
+      "percentage": "60%"
+    },
+    {
+      "id": 2,
+      "date": "12 March",
+      "header": "Cost of Sales",
+      "subheader": "",
+      "percentage": "30%"
+    },
+    {
+      "id": 3,
+      "date": "12 March",
+      "header": "Profit",
+      "subheader": "",
+      "percentage": "80"
+    },
+    {
+      "id": 4,
+      "date": "12 March",
+      "header": "Revenue",
+      "subheader": "",
+      "percentage": "100"
+    },
+    {
+      "id": 5,
+      "date": "12 March",
+      "header": "Inventory",
+      "subheader": "",
+      "percentage": "50%"
+    },
+    {
+      "id": 6,
+      "date": "12 March",
+      "header": "Orders",
+      "subheader": "",
+      "percentage": "20"
+    },
+    {
+      "id": 7,
+      "date": "12 March",
+      "header": "Vat",
+      "subheader": "",
+      "percentage": "15%"
+    }
+  ]
+}
