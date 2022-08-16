@@ -3,7 +3,9 @@ import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import ProfileView from "../views/ProfileView.vue";
 import ProductsView from "../views/ProductsView.vue";
+import ProductView from "../views/ProductView.vue";
 import LandingView from "../views/LandingView.vue";
+import LoginRegister from "../views/LoginRegister.vue";
 
 Vue.use(VueRouter);
 
@@ -33,9 +35,27 @@ const routes = [
     component: ProductsView,
   },
   {
+    path: "/products/:id",
+    name: "product",
+    component: ProductView,
+    props: true,
+  },
+  {
+    path: "/users/:id",
+    name: "user",
+    component: ProfileView,
+    props: true,
+  },
+  {
     path: "/landing",
     name: "landing",
     component: LandingView,
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: LoginRegister,
+    meta: { guest: true },
   },
 ];
 
@@ -44,5 +64,30 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+// const store = require("./vuex/store").default;
+
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some((record) => record.meta.requiresAuth)) {
+//     if (store.getters.isAuthenticated) {
+//       next();
+//       return;
+//     }
+//     next("/login");
+//   } else {
+//     next();
+//   }
+// });
+
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some((record) => record.meta.guest)) {
+//     if (store.getters.isAuthenticated) {
+//       next("/posts");
+//       return;
+//     }
+//     next();
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;

@@ -36,11 +36,12 @@ body {
   --app-container: #f3f6fd;
   --main-color: #1f1c2e;
   --secondary-color: #4a4a4a;
+  --p-font: "Alumni Sans Pinstripe", sans-serif;
   --link-color: #1f1c2e;
   --link-color-hover: #c3cff4;
   --link-color-active: #fff;
   --link-color-active-bg: #1f1c2e;
-  --projects-section: #fff;
+  --products-section: #fff;
   --message-box-hover: #fafcff;
   --message-box-border: #e9ebf0;
   --more-list-bg: #fff;
@@ -54,10 +55,10 @@ body {
 
 .dark:root {
   --app-container: #1f1d2b;
-  --app-container: #111827;
+  --app-container: #black;
   --main-color: #fff;
   --secondary-color: rgba(255, 255, 255, 0.8);
-  --projects-section: #1f2937;
+  --products-section: #1f2937;
   --link-color: rgba(255, 255, 255, 0.8);
   --link-color-hover: rgba(195, 207, 244, 0.1);
   --link-color-active-bg: rgba(195, 207, 244, 0.2);
@@ -72,6 +73,7 @@ body {
   --more-list-shadow: rgba(195, 207, 244, 0.1);
   --message-btn: rgba(195, 207, 244, 0.1);
 }
+@import url("https://fonts.googleapis.com/css2?family=Aboreto&family=Alumni+Sans+Pinstripe:ital@0;1&display=swap");
 
 html,
 body {
@@ -79,9 +81,21 @@ body {
   height: 100vh;
   margin: 0;
 }
-
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Aboreto", cursive;
+}
+p,
+button,
+input,
+a {
+  font-family: var(--p-font);
+}
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--p-font);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -109,22 +123,24 @@ a {
     optgroup,
     select,
     textarea {
-      font-family: "DM Sans", sans-serif;
+      font-family: var(--p-font);
     }
   }
 
   &-content {
     display: flex;
+    flex-direction: column;
     height: 100%;
     overflow: hidden;
     padding: 16px 24px 24px 0;
+    position: relative;
   }
 
   &-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 100vw;
     padding: 16px 24px;
     position: relative;
 
@@ -191,18 +207,16 @@ a {
 }
 
 .search-wrapper {
-  border-radius: 20px;
-  background-color: var(--search-area-bg);
+  border-radius: 0.5rem;
+  background-color: transparent;
   padding-right: 12px;
   height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 6rem;
+  width: 8rem;
   max-width: 480px;
   color: var(--light-font);
-  box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2),
-    0 24px 20px -24px rgba(71, 82, 107, 0.1);
   overflow: hidden;
 
   .dark & {
@@ -212,17 +226,23 @@ a {
 
 .search-input {
   border: none;
+  border-bottom: 0.1rem solid var(--button-bg);
   flex: 1;
   outline: none;
   height: 100%;
   padding: 0 20px;
-  font-size: 16px;
-  background-color: var(--search-area-bg);
+  font-size: 14px;
+  background-color: transparent;
   color: var(--main-color);
+  font-family: var(--p-font);
 
   &:placeholder {
     color: var(--main-color);
-    opacity: 0.6;
+    opacity: 0.8;
+    font-family: var(--p-font);
+  }
+  input {
+    font-family: var(--p-font) !important;
   }
 }
 
@@ -312,15 +332,14 @@ a {
 }
 
 // Dashboard Items
-.projects-section {
+.products-section {
   flex: 2;
-  background-color: var(--projects-section);
-  border-radius: 32px;
-  padding: 32px 32px 0 32px;
+  background-color: var(--products-section);
   overflow: hidden;
   height: 100%;
   display: flex;
   flex-direction: column;
+  width: 100vw;
 
   &-line {
     display: flex;
@@ -331,10 +350,13 @@ a {
 
   &-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     margin-bottom: 24px;
+    margin-left: 2rem;
     color: var(--main-color);
+    background: transparent;
+    opacity: 0.8;
 
     p {
       font-size: 24px;
@@ -351,7 +373,7 @@ a {
   }
 }
 
-.projects-status {
+.products-status {
   display: flex;
 }
 
@@ -420,7 +442,7 @@ a {
 .messages-section {
   flex-shrink: 0;
   padding-bottom: 32px;
-  background-color: var(--projects-section);
+  background-color: var(--products-section);
   margin-left: 24px;
   flex: 1;
   width: 100%;
@@ -446,12 +468,11 @@ a {
     margin-left: 0;
   }
 
-  .projects-section-header {
-    position: sticky;
-    top: 0;
+  .products-section-header {
     z-index: 1;
     padding: 32px 24px 0 24px;
-    background-color: var(--projects-section);
+    background: transparent;
+    opacity: 0.5;
   }
 }
 
@@ -868,7 +889,7 @@ a {
 }
 
 @media screen and (max-width: 520px) {
-  .projects-section {
+  .products-section {
     overflow: auto;
   }
   .project-boxes {
@@ -906,7 +927,7 @@ a {
     width: 100%;
   }
 
-  .projects-section {
+  .products-section {
     padding: 24px 16px 0 16px;
   }
 
@@ -919,8 +940,8 @@ a {
     padding: 10px;
   }
 
-  .projects-section-header p,
-  .projects-section-header .time {
+  .products-section-header p,
+  .products-section-header .time {
     font-size: 18px;
   }
 
@@ -979,7 +1000,7 @@ a {
 }
 // Products
 .filter-wrapper {
-  border-radius: 20px;
+  border-radius: 0.5rem;
   background-color: var(--search-area-bg);
   padding-right: 12px;
   height: 40px;
@@ -1011,6 +1032,7 @@ a {
   &:placeholder {
     color: var(--main-color);
     opacity: 0.6;
+    font-family: var(--p-font);
   }
 }
 </style>

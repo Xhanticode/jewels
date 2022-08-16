@@ -11,15 +11,14 @@ export default {
 </script>
 
 <style lang="scss">
-.projects-section {
+.products-section {
   flex: 2;
-  background-color: var(--projects-section);
-  border-radius: 32px;
-  padding: 32px 32px 0 32px;
+  background-color: var(--products-section);
   overflow: hidden;
   height: 100%;
   display: flex;
   flex-direction: column;
+  width: 100vw;
 
   &-line {
     display: flex;
@@ -34,6 +33,8 @@ export default {
     align-items: center;
     margin-bottom: 24px;
     color: var(--main-color);
+    background: transparent;
+    opacity: 0.5;
 
     p {
       font-size: 24px;
@@ -50,7 +51,7 @@ export default {
   }
 }
 
-.projects-status {
+.products-status {
   display: flex;
 }
 

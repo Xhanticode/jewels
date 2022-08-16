@@ -1,75 +1,14 @@
 <template>
-  <div class="app-container">
-    <div class="app-content">
-      <SideBar />
-
-      <div class="products-section-header" d-flex style="gap: 1rem">
-        <div class="search-wrapper">
-          <input class="search-input" type="text" placeholder="Search" />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            class="feather feather-search"
-            viewBox="0 0 24 24"
-          >
-            <defs></defs>
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="M21 21l-4.35-4.35"></path>
-          </svg>
-        </div>
-        <!-- <div class="filter-wrapper">
-          <b-form-select
-            v-model="selected"
-            :options="options"
-            size="sm"
-            class="filter"
-          ></b-form-select>
-        </div> -->
-      </div>
-      <div class="products-grid" v-if="products.length">
-        <ProductCard
-          v-for="product of products"
-          :key="product.id"
-          :product="product"
-          class="product-card"
-        />
-      </div>
-      <div v-else>
-        <div class="loader loader--style2" title="1">
-          <svg
-            version="1.1"
-            id="loader-1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px"
-            y="0px"
-            width="40px"
-            height="40px"
-            viewBox="0 0 50 50"
-            style="enable-background: new 0 0 50 50"
-            xml:space="preserve"
-          >
-            <path
-              fill="#000"
-              d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
-            >
-              <animateTransform
-                attributeType="xml"
-                attributeName="transform"
-                type="rotate"
-                from="0 25 25"
-                to="360 25 25"
-                dur="0.6s"
-                repeatCount="indefinite"
-              />
-            </path>
-          </svg>
+  <div>
+    <SideBar />
+    <div v-if="product">
+      <div v-for="product in product" :key="product.id" product="product">
+        <img :src="product.img" alt="" class="single-product-img" />
+        <div>
+          <h2>{{ product.title }}</h2>
+          <h3>{{ product.price }}</h3>
+          <h5>{{ product.color }}</h5>
+          <p>{{ product.description }}</p>
         </div>
       </div>
     </div>
@@ -78,17 +17,15 @@
 
 <script>
 import SideBar from "@/components/SideBar.vue";
-import ProductCard from "@/components/ProductCard.vue";
 import axios from "axios";
 
 export default {
   components: {
     SideBar,
-    ProductCard,
   },
   data() {
     return {
-      products: [],
+      product: [],
       selected: null,
       options: [
         { value: null, text: "Sort" },
@@ -100,10 +37,12 @@ export default {
     };
   },
   mounted() {
-    axios.get("https://xcjewels.herokuapp.com/products").then((response) => {
-      console.log(response.data);
-      this.products = response.data;
-    });
+    axios
+      .get("https://xcjewels.herokuapp.com/products/" + this.$route.params.id)
+      .then((response) => {
+        console.log(response.data);
+        this.product = response.data;
+      });
     document
       .querySelector(".product-card")
       .addEventListener(
@@ -186,5 +125,9 @@ export default {
   svg rect {
     fill: var(--button-bg);
   }
+}
+.single-product-img {
+  width: 20rem;
+  height: 26rem;
 }
 </style>

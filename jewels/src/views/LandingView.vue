@@ -18,68 +18,69 @@
     </div> -->
     <div class="moving-products-grid">
       <section>
-        <h1>More</h1>
+        <SideBar />
       </section>
-
+      <div class="cover-text">
+        <h1>Spring/Summer collection '22</h1>
+        <p>
+          browse our luxury spring/summer 2022 capsule collection available only
+          at selected stores.
+          <span
+            ><svg
+              width="20"
+              height="20"
+              viewBox="0 0 54 54"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M36.3419 44.6586L34.9384 43.2562L50.1995 27.9928H0V26.0072H50.2021L34.9384 10.7465L36.3419 9.34138L54 26.9995L36.3419 44.6586Z"
+                fill="#010002"
+              />
+            </svg>
+          </span>
+        </p>
+      </div>
       <div class="gallery">
         <div class="col">
+          <!-- <div
+            class="image"
+            v-for="product in 3"
+            :key="product.id"
+            :product="product"
+          >
+            <img :src="product.img" alt="" />
+          </div> -->
           <div class="image">
-            <img
-              src="https://images.pexels.com/photos/10324713/pexels-photo-10324713.jpeg?cs=srgb&dl=pexels-taha-samet-arslan-10324713.jpg&fm=jpg?auto=compress&cs=tinysrgb&h=650&w=940%20940w"
-              alt=""
-            />
+            <img src="https://i.postimg.cc/d1BGQ8h8/IMG-4790.jpg" alt="" />
           </div>
           <div class="image">
-            <img
-              src="https://images.pexels.com/photos/10533885/pexels-photo-10533885.jpeg?auto=compress&cs=tinysrgb&h=650&w=940%20940w"
-              alt=""
-            />
+            <img src="https://i.postimg.cc/9X15LcvR/IMG-4774.jpg" alt="" />
           </div>
           <div class="image">
-            <img
-              src="https://images.pexels.com/photos/10253213/pexels-photo-10253213.jpeg?cs=srgb&dl=pexels-beepin-10253213.jpg&fm=jpg?auto=compress&cs=tinysrgb&h=650&w=940%20940w"
-              alt=""
-            />
-          </div>
-        </div>
-        <div class="col">
-          <div class="image">
-            <img
-              src="https://images.pexels.com/photos/10050979/pexels-photo-10050979.jpeg?cs=srgb&dl=pexels-%D0%B8%D0%BB%D1%8C%D1%8F-%D0%BF%D0%B0%D1%85%D0%BE%D0%BC%D0%BE%D0%B2-10050979.jpg&fm=jpg?auto=compress&cs=tinysrgb&h=650&w=940%20940w"
-              alt=""
-            />
-          </div>
-          <div class="image">
-            <img
-              src="https://images.pexels.com/photos/1128660/pexels-photo-1128660.jpeg?cs=srgb&dl=pexels-nur-andi-ravsanjani-gusma-1128660.jpg&fm=jpg?auto=compress&cs=tinysrgb&h=650&w=940%20940w"
-              alt=""
-            />
-          </div>
-          <div class="image">
-            <img
-              src="https://images.pexels.com/photos/9699293/pexels-photo-9699293.jpeg?cs=srgb&dl=pexels-lada-rezantseva-9699293.jpg&fm=jpg?auto=compress&cs=tinysrgb&h=650&w=940%20940w"
-              alt=""
-            />
+            <img src="https://postimg.cc/D8w1X0RS" alt="" />
           </div>
         </div>
         <div class="col">
           <div class="image">
-            <img
-              src="https://images.pexels.com/photos/6405575/pexels-photo-6405575.jpeg?cs=srgb&dl=pexels-daria-sannikova-6405575.jpg&fm=jpg?auto=compress&cs=tinysrgb&h=650&w=940%20940w"
-              alt=""
-            />
+            <img src="https://i.postimg.cc/WbXjmtkX/IMG-4789.jpg" alt="" />
           </div>
           <div class="image">
-            <img
-              src="https://images.pexels.com/photos/10162526/pexels-photo-10162526.jpeg?cs=srgb&dl=pexels-svetlana%F0%9F%8E%9E-10162526.jpg&fm=jpg?auto=compress&cs=tinysrgb&h=650&w=940%20940w"
-              alt=""
-            />
+            <img src="https://postimg.cc/FksGzZjR" alt="" />
           </div>
           <div class="image">
-            <img
-              src="https://images.pexels.com/photos/4394807/pexels-photo-4394807.jpeg?cs=srgb&dl=pexels-woodysmedia-4394807.jpg&fm=jpg?auto=compress&cs=tinysrgb&h=650&w=940%20940w"
-              alt=""
-            />
+            <img src="https://postimg.cc/k2kjsWd1" alt="" />
+          </div>
+        </div>
+        <div class="col">
+          <div class="image">
+            <img src="https://postimg.cc/Jt1pp19L" alt="" />
+          </div>
+          <div class="image">
+            <img src="https://postimg.cc/gnttwftP" alt="" />
+          </div>
+          <div class="image">
+            <img src="hhttps://postimg.cc/Jt1pp19L" alt="" />
           </div>
         </div>
       </div>
@@ -92,11 +93,13 @@
 import LoginRegister from "@/components/LoginRegister.vue";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SideBar from "@/components/SideBar.vue";
 
 gsap.registerPlugin(ScrollTrigger);
 export default {
   components: {
     LoginRegister,
+    SideBar,
   },
   mounted() {
     console.clear();
@@ -105,8 +108,22 @@ export default {
 
     function overlayAnimation() {
       let topOverlay = document.querySelector("#top-overlay");
-      let bottomOverlay = document.querySelector("#bottom-overelay");
+      let bottomOverlay = document.querySelector("#bottom-overlay");
+      let loginButton = document.getElementById("login-button");
+      let loginForm = document.getElementById("login-form");
+      let sideBar = document.querySelector(".app-sidebar");
+      loginButton.addEventListener("click", hideOverlay);
+      function hideOverlay() {
+        topOverlay.style.opacity = "0";
+        topOverlay.style.transform = "translateY(-1000)";
+        bottomOverlay.style.opacity = "0";
+        bottomOverlay.style.transform = "translateY(1000)";
+        loginForm.style.transform = "translateX(-1000), scale(0)";
+        loginForm.style.opacity = "0";
+        sideBar.style.zIndex = "2000";
+      }
     }
+    overlayAnimation();
 
     const additionalY = { val: 0 };
     let additionalYAnim;
@@ -171,9 +188,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 #login-form {
   z-index: 1000;
+  transition: 3s;
 }
 .landing-container {
   width: 100vw;
@@ -197,6 +215,7 @@ export default {
   position: absolute;
   background: black;
   opacity: 0.9;
+  transition: 4s;
 }
 #bottom-overlay {
   bottom: 0;
@@ -205,6 +224,7 @@ export default {
   position: absolute;
   background: black;
   opacity: 0.9;
+  transition: 4s;
 }
 iframe {
   border: 0;
@@ -220,9 +240,28 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: visible;
 }
-
+.cover-text {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 2000;
+  width: 21.5rem;
+  h1 {
+    white-space: initial;
+    word-wrap: break-word;
+  }
+  p {
+    font-size: 1.6rem;
+    width: 100%;
+    text-align: justify;
+    position: relative;
+    span {
+      right: 0;
+      position: absolute;
+    }
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -240,6 +279,12 @@ section {
   transform: translateX(-50%);
   overflow: visible;
   transform: rotate(45deg);
+}
+.app-sidebar {
+  position: absolute;
+  top: 10rem;
+  right: 2rem;
+  z-index: 30;
 }
 @media (max-width: 768px) {
   .gallery {

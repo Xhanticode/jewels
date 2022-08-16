@@ -49,7 +49,7 @@ export default {
 .messages-section {
   flex-shrink: 0;
   padding-bottom: 32px;
-  background-color: var(--projects-section);
+  background-color: var(--products-section);
   margin-left: 24px;
   flex: 1;
   width: 100%;
@@ -75,12 +75,12 @@ export default {
     margin-left: 0;
   }
 
-  .projects-section-header {
+  .products-section-header {
     position: sticky;
     top: 0;
     z-index: 1;
     padding: 32px 24px 0 24px;
-    background-color: var(--projects-section);
+    background-color: var(--products-section);
   }
 }
 

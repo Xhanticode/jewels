@@ -2,13 +2,13 @@
   <div class="app-container">
     <div class="app-content">
       <SideBar />
-      <div class="projects-section">
-        <div class="projects-section-header">
+      <div class="products-section">
+        <div class="products-section-header">
           <p>Dashboard</p>
           <p class="time">August, 12</p>
         </div>
-        <div class="projects-section-line">
-          <div class="projects-status">
+        <div class="products-section-line">
+          <div class="products-status">
             <DashboardItem></DashboardItem>
           </div>
           <div class="view-actions">
@@ -78,7 +78,7 @@
             <line x1="9" y1="9" x2="15" y2="15" />
           </svg>
         </button>
-        <div class="projects-section-header">
+        <div class="products-section-header">
           <p>My Products</p>
         </div>
         <div class="messages">
@@ -191,36 +191,34 @@ body {
 
 :root {
   --app-container: #f3f6fd;
-  --main-color: #1f1c2e;
+  --main-color: #080809;
   --secondary-color: #4a4a4a;
-  --link-color: #1f1c2e;
+  --p-font: "Alumni Sans Pinstripe", sans-serif;
+  --link-color: #080809;
   --link-color-hover: #c3cff4;
-  --link-color-active: #fff;
-  --link-color-active-bg: #1f1c2e;
+  --link-color-active: rgb(71, 71, 71);
   --header-background: #f3f6fd;
-  --projects-section: #fff;
+  --products-section: #fff;
   --message-box-hover: #fafcff;
   --message-box-border: #e9ebf0;
   --more-list-bg: #fff;
   --more-list-bg-hover: #f6fbff;
   --more-list-shadow: rgba(209, 209, 209, 0.4);
-  --button-bg: #1f1c24;
+  --button-bg: #080809;
   --search-area-bg: #fff;
   --star: #1ff1c2e;
   --message-btn: #fff;
-  --sidebar-icons: #1f1c2e;
+  --sidebar-icons: #080809;
 }
 
 .dark:root {
-  --app-container: #1f1d2b;
-  --app-container: #111827;
-  --main-color: #fff;
-  --secondary-color: rgba(255, 255, 255, 0.8);
-  --projects-section: #1f2937;
+  --app-container: #080809;
+  --main-color: #f3f6fd;
+  --secondary-color: #4a4a4a;
+  --products-section: #080809;
   --link-color: rgba(255, 255, 255, 0.8);
   --link-color-hover: rgba(195, 207, 244, 0.1);
-  --link-color-active-bg: rgba(195, 207, 244, 0.2);
-  --header-background: #111827;
+  --header-background: #080809;
   --button-bg: #1f2937;
   --search-area-bg: #1f2937;
   --message-box-hover: #243244;
@@ -242,7 +240,7 @@ body {
 }
 
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: "Aboreto", cursive;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -250,12 +248,21 @@ body {
 }
 
 button,
-a {
+a,
+router-link {
   cursor: pointer;
 }
-.sidebar-icons {
+.sidebar-icons,
+svg {
   color: var(--sidebar-icons);
   fill: var(--sidebar-icons);
+  cursor: pointer;
+}
+#settings-icon {
+  fill: none;
+  path {
+    fill: none;
+  }
 }
 .app {
   &-container {
@@ -273,7 +280,7 @@ a {
     optgroup,
     select,
     textarea {
-      font-family: "DM Sans", sans-serif;
+      font-family: var(--p-font);
     }
   }
 
@@ -288,7 +295,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 100vw;
     padding: 16px 24px;
     position: relative;
     background: var(--header-background);
@@ -357,18 +364,16 @@ a {
 }
 
 .search-wrapper {
-  border-radius: 20px;
-  background-color: var(--search-area-bg);
+  border-radius: 0.5rem;
+  background-color: transparent;
   padding-right: 12px;
   height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 10rem;
   max-width: 480px;
   color: var(--light-font);
-  box-shadow: 0 2px 6px 0 rgba(136, 148, 171, 0.2),
-    0 24px 20px -24px rgba(71, 82, 107, 0.1);
   overflow: hidden;
 
   .dark & {
@@ -378,17 +383,20 @@ a {
 
 .search-input {
   border: none;
+  border-bottom: 0.1rem solid var(--button-bg);
   flex: 1;
   outline: none;
   height: 100%;
   padding: 0 20px;
   font-size: 16px;
-  background-color: var(--search-area-bg);
+  background-color: transparent;
   color: var(--main-color);
+  font-family: var(--p-font);
 
   &:placeholder {
     color: var(--main-color);
-    opacity: 0.6;
+    opacity: 0.8;
+    font-family: var(--p-font);
   }
 }
 
@@ -468,20 +476,19 @@ a {
     &:hover {
       background-color: var(--link-color-hover);
       color: var(--link-color-active);
+      cursor: pointer;
     }
 
     &.active {
-      background-color: var(--link-color-active-bg);
       color: var(--link-color-active);
     }
   }
 }
 
 // Dashboard Items
-.projects-section {
+.products-section {
   flex: 2;
-  background-color: var(--projects-section);
-  border-radius: 32px;
+  background-color: var(--products-section);
   padding: 32px 32px 0 32px;
   overflow: hidden;
   height: 100%;
@@ -497,10 +504,12 @@ a {
 
   &-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     margin-bottom: 24px;
     color: var(--main-color);
+    background: transparent;
+    opacity: 0.5;
 
     p {
       font-size: 24px;
@@ -517,7 +526,7 @@ a {
   }
 }
 
-.projects-status {
+.products-status {
   display: flex;
 }
 
@@ -586,7 +595,7 @@ a {
 .messages-section {
   flex-shrink: 0;
   padding-bottom: 32px;
-  background-color: var(--projects-section);
+  background-color: var(--products-section);
   margin-left: 24px;
   flex: 1;
   width: 100%;
@@ -617,12 +626,12 @@ a {
     margin-left: 0;
   }
 
-  .projects-section-header {
+  .products-section-header {
     position: sticky;
     top: 0;
     z-index: 1;
     padding: 32px 24px 0 24px;
-    background-color: var(--projects-section);
+    background-color: var(--products-section);
   }
 }
 
@@ -845,7 +854,7 @@ a {
     left: 50%;
     transform: translatex(-50%);
   }
-  
+
   &:before { top: 0;}
   &:after { bottom: 0; }*/
 }
@@ -1039,7 +1048,7 @@ a {
 }
 
 @media screen and (max-width: 520px) {
-  .projects-section {
+  .products-section {
     overflow: auto;
   }
   .project-boxes {
@@ -1077,7 +1086,7 @@ a {
     width: 100%;
   }
 
-  .projects-section {
+  .products-section {
     padding: 24px 16px 0 16px;
   }
 
@@ -1090,8 +1099,8 @@ a {
     padding: 10px;
   }
 
-  .projects-section-header p,
-  .projects-section-header .time {
+  .products-section-header p,
+  .products-section-header .time {
     font-size: 18px;
   }
 

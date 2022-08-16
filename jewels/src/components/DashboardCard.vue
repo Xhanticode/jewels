@@ -134,7 +134,7 @@ export default {
 
 <style lang="sass">
 
-//     // Projects
+//     // products
 
 //     .project-box-wrapper {
 //       width: 33.3%;
